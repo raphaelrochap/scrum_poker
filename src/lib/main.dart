@@ -19,11 +19,7 @@ class ScrumManagerLite extends StatelessWidget {
             )
           );
         },
-        routes: {
-          '/': (context) => ScrumPokerCards(),
-          '/CartaEscolhida': (context) => CartaEscolhida(
-                carta: null,
-              ),
-        });
+        home: ScrumPokerCards(),        
+        );
   }
 }
