@@ -11,7 +11,7 @@ class _AbaClass {
   final double fontSize;
 }
 
-Color currentColor = Colors.blue[400];
+Color currentColor = Colors.green[400];
 double fontSize;
 
 enum GridDemoTileStyle { imageOnly, oneLine, twoLine }
@@ -105,7 +105,7 @@ class ScrumPokerCardsState extends State<ScrumPokerCards>
     });
   }
 
-  void _showConfigurationSheet() {
+  void _mostrarPainelTamanhoFonte() {
     if (!_ativo) {
       final PersistentBottomSheetController<void> bottomSheet = scaffoldKey
           .currentState
@@ -121,7 +121,7 @@ class ScrumPokerCardsState extends State<ScrumPokerCards>
               Column(children: <Widget>[
                 Container(
                   height: 6,
-                  margin: EdgeInsets.all(15),
+                  margin: EdgeInsets.all(20),
                   width: 40,
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
@@ -134,13 +134,14 @@ class ScrumPokerCardsState extends State<ScrumPokerCards>
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 50),
+                  padding: const EdgeInsets.only(bottom: 25),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Container(
                         height: 50,
                         child: RaisedButton(
+                          color: Colors.grey[350],
                           elevation: 0,
                           child: Text(
                             'A-',
@@ -159,6 +160,7 @@ class ScrumPokerCardsState extends State<ScrumPokerCards>
                       Container(
                         height: 50,
                         child: RaisedButton(
+                          color: Colors.grey[350],
                           elevation: 0,
                           child: Text(
                             'A+',
@@ -183,13 +185,13 @@ class ScrumPokerCardsState extends State<ScrumPokerCards>
       setState(() {
         _bottomSheet = bottomSheet;
         _ativo = true;
-        print('abriu');
-      });
-    } else {
+      });      
+    }
+    else {
       setState(() {
-        if (_bottomSheet != null) _bottomSheet.close();
+        if (_bottomSheet != null)
+          _bottomSheet.close();
         _ativo = false;
-        print('abriu');
       });
     }
 
@@ -296,27 +298,16 @@ class ScrumPokerCardsState extends State<ScrumPokerCards>
             progress: _controller.view,
           ),
         ),
-        title: const Text('Planning cards'),
+        title: const Text(
+          'Planning Cards',
+          style: TextStyle(
+            ),
+        ),
         backgroundColor: currentColor,
         actions: <Widget>[
-          PopupMenuButton<GridDemoTileStyle>(
-            onSelected: changeTileStyle,
-            itemBuilder: (BuildContext context) =>
-                <PopupMenuItem<GridDemoTileStyle>>[
-              const PopupMenuItem<GridDemoTileStyle>(
-                value: GridDemoTileStyle.imageOnly,
-                child: Center(child: Icon(Icons.palette, color: Colors.grey)),
-              ),
-              const PopupMenuItem<GridDemoTileStyle>(
-                value: GridDemoTileStyle.oneLine,
-                child: Center(
-                    child: Icon(Icons.font_download, color: Colors.grey)),
-              ),
-            ],
-          ),
           IconButton(
-            icon: Icon(Icons.settings),
-            onPressed: _showConfigurationSheet,
+            icon: Icon(Icons.text_fields),
+            onPressed: _mostrarPainelTamanhoFonte,
           ),
           IconButton(
             icon: Icon(Icons.palette),
@@ -359,17 +350,24 @@ class ScrumPokerCardsState extends State<ScrumPokerCards>
     final List<Widget> backdropItems =
         _allPages.map<Widget>((_AbaClass category) {
       final bool selected = category == _page;
-      return Material(
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(5)),
-        ),
-        color: selected ? Colors.white.withOpacity(0.25) : Colors.transparent,
-        child: ListTile(
-          title: Text(category.nomeDaAba),
-          selected: selected,
-          onTap: () {
-            _changeCategory(category);
-          },
+      return Padding(
+        padding: const EdgeInsets.all(3),
+        child: Material(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(5)),
+          ),
+          // color: selected ? Colors.white.withOpacity(0.25) : Colors.transparent,
+          color: selected ? Colors.white.withOpacity(0.25) : Colors.white.withOpacity(0.1),
+          // color: fonteNecessaria(),
+          child: ListTile(          
+            title: Text(category.nomeDaAba,
+              style: TextStyle(color: fonteNecessaria()),
+            ),
+            selected: selected,
+            onTap: () {
+              _changeCategory(category);
+            },
+          ),
         ),
       );
     }).toList();
@@ -377,17 +375,23 @@ class ScrumPokerCardsState extends State<ScrumPokerCards>
     return Container(
       key: _backdropKey,
       color: currentColor,
+      height: (MediaQuery.of(context).size.height),
       child: Stack(
         children: <Widget>[
-          ListTileTheme(
-            textColor: theme.primaryTextTheme.headline.color.withOpacity(0.6),
-            selectedColor: theme.primaryTextTheme.headline.color,
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: backdropItems,
+          Container(
+            child: SingleChildScrollView(
+                          child: ListTileTheme(
+                style: ListTileStyle.drawer,
+                textColor: theme.primaryTextTheme.headline.color.withOpacity(0.6),
+                selectedColor: theme.primaryTextTheme.headline.color,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: backdropItems,
+                  ),
+                ),
               ),
             ),
           ),
@@ -439,6 +443,8 @@ Widget listaCartas(List<String> lista, int qtcolunas, double tamanhofonte,
                           child: CartaEscolhida(
                             carta: data,
                             corEscolhida: cor,
+                            corDaFonte: fonteNecessaria(),
+                            // fonteNecessaria()
                           ),
                         )));
               },
@@ -475,12 +481,6 @@ Widget textoOuIcone(
       maxLines: 1,
     );
   }
-}
-
-Color fonteNecessaria(Color cor) {
-  return useWhiteForeground(cor)
-      ? const Color(0xffffffff)
-      : const Color(0xff000000);
 }
 
 class CategoryView extends StatelessWidget {
@@ -584,4 +584,10 @@ class BackdropPanel extends StatelessWidget {
       ),
     );
   }
+}
+
+Color fonteNecessaria() {
+  return useWhiteForeground(currentColor)
+      ? Color(0xffffffff)
+      : Color(0xff000000);
 }
