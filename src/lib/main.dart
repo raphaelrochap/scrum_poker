@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:scrum_manager_lite/pages/CartaEscolhida.dart';
 import 'package:scrum_manager_lite/pages/ScrumPokerCards.dart';
 
 void main() => runApp(ScrumManagerLite());
