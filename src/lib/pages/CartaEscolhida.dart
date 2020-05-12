@@ -40,8 +40,9 @@ class _CartaEscolhidaState extends State<CartaEscolhida> {
     if (texto == 'assets/cafe.png') {
       var imagemCafe = AssetImage(texto);
       return Image(
+        color: corDafonte,
         image: imagemCafe,
-        height: (MediaQuery.of(context).size.height * 0.2),
+        height: (MediaQuery.of(context).size.height * 0.35),
       );
     } else {
       return Padding(
