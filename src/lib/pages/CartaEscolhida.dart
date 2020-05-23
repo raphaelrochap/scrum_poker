@@ -18,22 +18,22 @@ class _CartaEscolhidaState extends State<CartaEscolhida> {
   @override
   Widget build(BuildContext context) {
     return FlipCard(
-      speed: 500,
-      direction: FlipDirection.HORIZONTAL,
-      front: mostrarCarta(' ', context, widget.corEscolhida, widget.corDaFonte),
-      back: mostrarCarta(widget.carta, context, widget.corEscolhida, widget.corDaFonte),
-    );
+        speed: 500,
+        direction: FlipDirection.HORIZONTAL,
+        front: mostrarCarta(' ', context, widget.corEscolhida, widget.corDaFonte),
+        back: mostrarCarta(widget.carta, context, widget.corEscolhida, widget.corDaFonte),
+      );
   }
 
   Widget mostrarCarta(String carta, BuildContext context, Color cor, Color corDafonte) {
     return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0),
-      ),
-      elevation: 10,
-      color: cor,
-      child: Center(child: textoOuIcone(carta, 200, corDafonte, context)),
-    );
+        shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(20.0),
+        ),
+        elevation: 10,
+        color: cor,
+        child: Center(child: textoOuIcone(carta, 200, corDafonte, context)),
+      );
   }
 
   Widget textoOuIcone(String texto, double tamanhoFonte, Color corDafonte, BuildContext context) {

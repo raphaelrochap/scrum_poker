@@ -22,6 +22,7 @@ dependencies:
   flutter_colorpicker: ^0.3.2
   auto_size_text: ^2.1.0
   path_provider: ^1.1.0
+  global_configuration: ^1.5.0
 
   flutter:
     sdk: flutter
@@ -50,6 +51,7 @@ flutter:
   assets:
    - assets/cafe.png   
    - assets/icone.png
+   - assets/cfg/
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:path_provider/path_provider.dart';
-
 import 'dart:math' as math;
+
+import 'package:path_provider/path_provider.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:global_configuration/global_configuration.dart';
+import 'package:scrum_manager_lite/pages/app_settings.dart';
 import 'CartaEscolhida.dart';
 
 class _AbaClass {
@@ -15,20 +17,26 @@ class _AbaClass {
   final double tamanhoFonteAbas;
 }
 
+enum Configuracao {tamanhoFonte, corFonte, corTema}
+
+// int tamanhoFonte = 0;
+// int corFonte = 1;
+// int corTema = 2;
+
+String aaa = Colors.white.toString();
 bool usuarioEscolheu = false;
 Color corFonteUsuario;
 Color currentColor = Colors.green[400];
 double tamanhoFonteCartas;
-List toDoList = [];
+// List toDoList = [];
 
-  void _addToDo(String nomeconfig, dynamic valor){
-      Map<String, dynamic> newToDo = Map();
-      newToDo["tamanhoFonte"] = tamFonte;
-      newToDo["corFonte"] = colorFonte;
-      newToDo["corTema"] = colorTema;
-      toDoList.add(newToDo);
-      _saveData();
-  }
+  // void _addToDo(String nomeconfig, String valor){
+  //     Map<String, String> newToDo = Map();
+  //     // newToDo["config"] = tamFonte;
+  //     // newToDo["valor"] = colorFonte;
+  //     toDoList.add(newToDo);
+  //     _saveData();
+  // }
 
 
   Future<File> _getFile() async {
@@ -38,7 +46,7 @@ List toDoList = [];
   }
 
   Future<File> _saveData() async{
-    String data = json.encode(toDoList);
+    String data = json.encode(appSettings);
     
     final file = await _getFile();
     return file.writeAsString(data);
@@ -466,17 +474,9 @@ class ScrumPokerCardsState extends State<ScrumPokerCards>
   @override
   void initState() {
     super.initState();
-    tamanhoFonteCartas = 30;
+    tamanhoFonteCartas = double.parse(GlobalConfiguration().getString("tamanhoFonte"));
     _controller = new AnimationController(
         duration: const Duration(milliseconds: 100), value: 1.0, vsync: this);
-
-    _readData().then((data){
-      setState(() {
-        toDoList = json.decode(data);
-      });
-    });
-
-
   }
 
   @override
@@ -594,7 +594,7 @@ class ScrumPokerCardsState extends State<ScrumPokerCards>
         padding: const EdgeInsets.all(3),
         child: Material(
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
+            borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
           // color: selected ? Colors.white.withOpacity(0.25) : Colors.transparent,
           color: selected
@@ -791,16 +791,16 @@ Widget listaCartas(List<String> lista, int qtcolunas, double tamanhofonte,
                 showDialog(
                     context: context,
                     builder: (_) => Center(
-                            child: Container(
-                          width: (MediaQuery.of(context).size.width * 0.85),
-                          height: (MediaQuery.of(context).size.height * 0.75),
-                          child: CartaEscolhida(
-                            carta: data,
-                            corEscolhida: cor,
-                            corDaFonte: fonteNecessaria(),
-                            // fonteNecessaria()
-                          ),
-                        )));
+                  child: Container(
+                width: (MediaQuery.of(context).size.width * 0.85),
+                height: (MediaQuery.of(context).size.height * 0.75),
+                child: CartaEscolhida(
+                carta: data,
+                corEscolhida: cor,
+                corDaFonte: fonteNecessaria(),
+                // fonteNecessaria()
+                  ),
+              )));
               },
               child: Center(
                   child: Padding(
@@ -808,7 +808,7 @@ Widget listaCartas(List<String> lista, int qtcolunas, double tamanhofonte,
                 child: textoOuIcone(data, tamanhofonte, context, cor),
               )),
             ),
-          ),
+              ),
           // )
         )
         .toList(),
@@ -818,7 +818,6 @@ Widget listaCartas(List<String> lista, int qtcolunas, double tamanhofonte,
 Widget textoOuIcone(
     String texto, double tamanhoFonte, BuildContext context, Color cor) {
   if (texto == 'assets/cafe.png') {
-    print("ffff");
     var iconeCafe = AssetImage(texto);
     return Image(
       color: fonteNecessaria(),
@@ -1075,8 +1074,10 @@ class _TesteState extends State<Teste> {
                         // color: Colors.white,
                         child: Text(
                           'Tamanho da fonte:',
+                          // Colors.white.toString(),
                           style: TextStyle(
                               color: Colors.black,
+                              // color: Color(),
                               fontWeight: FontWeight.w500,
                               fontSize: 16),
                         ),
@@ -1152,11 +1153,9 @@ class _TesteState extends State<Teste> {
                         width: MediaQuery.of(context).size.width * 0.5,
                         // color: Colors.white,
                         child: Text(
-                          // 'Cor da fonte:',
-                          toDoList[0]['config'],
+                          'Cor da fonte:',
                           style: TextStyle(
-                              // color: toDoList[0]['valor'],
-                              color: Colors.green,
+                              color: Colors.black,
                               fontWeight: FontWeight.w500,
                               fontSize: 16),
                         ),
@@ -1197,8 +1196,6 @@ class _TesteState extends State<Teste> {
                                 corFonteUsuario = Colors.white;
                                 usuarioEscolheu = !usuarioEscolheu;
                                 widget.fu();
-                                _addToDo('cor', Colors.white);
-                                _saveData();
                               }
                             });                          
                           },
