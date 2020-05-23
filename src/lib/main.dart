@@ -5,8 +5,6 @@ import 'package:scrum_manager_lite/pages/ScrumPokerCards.dart';
 import 'package:global_configuration/global_configuration.dart';
 import 'package:scrum_manager_lite/pages/app_settings.dart';
 
-// void main() => runApp(ScrumManagerLite());
-
 void main() async{  
   WidgetsFlutterBinding.ensureInitialized();
   GlobalConfiguration().loadFromMap(appSettings);

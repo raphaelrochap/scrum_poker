@@ -102,18 +102,6 @@ const List<String> _fibonacci = [
   "assets/cafe.png"
 ];
 
-// const List<String> _tShirtBR = [
-//   "PP",
-//   "P",
-//   "M",
-//   "G",
-//   "GG",
-//   "XG",
-//   "∞",
-//   "?",
-//   "assets/cafe.png"
-// ];
-
 const List<String> _tShirtEN = [
   "XS",
   "S",
@@ -126,13 +114,9 @@ const List<String> _tShirtEN = [
 ];
 
 const List<_AbaClass> _allPages = [
-  _AbaClass(
-      nomeDaAba: 'Standard', listaDeCartas: _standart, tamanhoFonteAbas: 20),
-  _AbaClass(
-      nomeDaAba: 'Fibonacci', listaDeCartas: _fibonacci, tamanhoFonteAbas: 38),
-  _AbaClass(
-      nomeDaAba: 'T-Shirt(EN)', listaDeCartas: _tShirtEN, tamanhoFonteAbas: 35),
-  // _AbaClass(nomeDaAba: 'T-Shirt(BR)', listaDeCartas: _tShirtBR, tamanhoFonteAbas: 38),
+  _AbaClass(nomeDaAba: 'Standard', listaDeCartas: _standart, tamanhoFonteAbas: 20),
+  _AbaClass(nomeDaAba: 'Fibonacci', listaDeCartas: _fibonacci, tamanhoFonteAbas: 38),
+  _AbaClass(nomeDaAba: 'T-Shirt(EN)', listaDeCartas: _tShirtEN, tamanhoFonteAbas: 35),
 ];
 
 class ScrumPokerCards extends StatefulWidget {
@@ -148,23 +132,14 @@ class ScrumPokerCardsState extends State<ScrumPokerCards>
 
   static final GlobalKey<ScaffoldState> scaffoldKey =
       GlobalKey<ScaffoldState>();
-  PersistentBottomSheetController<void> _bottomSheet;
-  // GridDemoTileStyle _tileStyle = GridDemoTileStyle.twoLine;
+  PersistentBottomSheetController<void> _bottomSheet;  
   bool _ativo = false;
-
-  // void changeTileStyle(GridDemoTileStyle value) {
-  //   setState(() {
-  //     _tileStyle = value;
-  //   });
-  // }
 
   void nada() {
     setState(() {});
   }
 
-  void _mostrarPainelTamanhoFonte() {
-    // String dropdownValue = 'One';
-
+  void _mostrarPainelTamanhoFonte() {  
     if (!_ativo) {
       final PersistentBottomSheetController<void> bottomSheet = scaffoldKey
           .currentState
@@ -173,262 +148,6 @@ class ScrumPokerCardsState extends State<ScrumPokerCards>
         return Teste(
           fu: this.nada,
         );
-
-        /*Container(
-          decoration: const BoxDecoration(
-            border: Border(top: BorderSide(color: Colors.black26)),
-          ),
-          child: ListView(
-            shrinkWrap: true,
-            primary: false,
-            children: <Widget>[
-              Column(children: <Widget>[
-                Container(
-                  height: 8,
-                  margin: EdgeInsets.all(20),
-                  // width: 80,
-                  width: MediaQuery.of(context).size.width * 0.30,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[350],
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(5),
-                      topRight: Radius.circular(5),
-                      bottomLeft: Radius.circular(5),
-                      bottomRight: Radius.circular(5),
-                    ),
-                  ),
-                ),
-                /*Padding(
-                  padding:
-                      const EdgeInsets.only(bottom: 25, left: 15, right: 15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        'Tamanho da fonte:',
-                        textAlign: TextAlign.start,
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Container(
-                            height: 50,
-                            child: RaisedButton(
-                              color: Colors.grey[350],
-                              elevation: 0,
-                              child: Text(
-                                'A-',
-                                style: TextStyle(fontSize: 12),
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  if (fontSize != 14) fontSize -= 4;
-                                });
-                              },
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(3),
-                          ),
-                          Container(
-                            height: 50,
-                            child: RaisedButton(
-                              color: Colors.grey[350],
-                              elevation: 0,
-                              child: Text(
-                                'A+',
-                                style: TextStyle(fontSize: 20),
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  if (fontSize != 46) fontSize += 4;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                */
-
-                Divider(),
-                Padding(                  
-                  padding: const EdgeInsets.all(10),
-                  child: Container(                    
-                      // color: Colors.blue,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Column(
-                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                            children: <Widget>[
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.5,
-                                // color: Colors.white,
-                                child: Text(
-                                  'Tamanho da fonte:',
-                                  style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 16),                                  
-                                  ),
-                              )
-                            ],
-                          ),
-                          Column(
-                            // crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Row(children: <Widget>[
-                                Container(
-                                  height: 50,
-                                  width: MediaQuery.of(context).size.width * 0.2,
-                                  // color: Colors.deepOrange,
-                                  child: RaisedButton(
-                                    color: Colors.grey[350],
-                                    child: Text('A-', style: TextStyle(fontSize: 14)),                                    
-                                    onPressed: () {
-                                      setState(() {
-                                        if (fontSize != 14) fontSize -= 4;
-                                      });
-                                    },
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(3),
-                                ),
-                                Container(
-                                  height: 50,
-                                  width: MediaQuery.of(context).size.width * 0.2,
-                                  // color: Colors.deepOrange,
-                                  child: RaisedButton(
-                                    color: Colors.grey[350],
-                                    child: Text('A+', style: TextStyle(fontSize: 20)),
-                                    onPressed: () {
-                                      setState(() {
-                                        if (fontSize != 46) fontSize -= 4;
-                                      });
-                                    },
-                                  ),
-                                ),
-                              ])
-                            ],
-                          )
-                        ],
-                      )),
-                ),
-                Divider(indent: 20, endIndent: 20,),
-              //outrooooo
-                Padding(                  
-                  padding: const EdgeInsets.all(5),
-                  child: Container(                    
-                      // color: Colors.blue,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Column(
-                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                            children: <Widget>[
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.5,
-                                // color: Colors.white,
-                                child: Text(
-                                  'Cor da fonte:',
-                                  style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 16),                                  
-                                  ),
-                              )
-                            ],
-                          ),
-                          Row(
-                            // crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[                              
-                              RawMaterialButton(                                
-                                onPressed: () {},
-                                elevation: 0,
-                                fillColor: Colors.black,
-                                shape: CircleBorder(
-                                  side: BorderSide(
-                                    color: Colors.white,
-                                    width: 1.5,
-                                  )
-                                ),
-                              ),
-                              RawMaterialButton(
-                                onPressed: () {},
-                                elevation: 0,
-                                fillColor: Colors.white,
-                                shape: CircleBorder(
-                                  side: BorderSide(
-                                    color: Colors.black,
-                                    width: 1.5,
-                                  )
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      )),
-                ),
-                Divider(),
-                Padding(                  
-                  padding: const EdgeInsets.all(5),
-                  child: Container(                    
-                      // color: Colors.blue,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Column(
-                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                            children: <Widget>[
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.5,
-                                // color: Colors.white,
-                                child: Text(
-                                  'Cor de tema:',
-                                  style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 16),                                  
-                                  ),
-                              )
-                            ],
-                          ),
-                          Row(
-                            // crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[                              
-                              RawMaterialButton(                                
-                                onPressed: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: Text('Escolha uma cor'),
-                    content: SingleChildScrollView(
-                      child: MaterialPicker(
-                        pickerColor: currentColor,
-                        onColorChanged: changeColor,
-                      ),
-                    ),
-                  );
-                },
-              );
-            },
-                                elevation: 0,
-                                fillColor: currentColor,
-                                shape: CircleBorder(
-                                  side: BorderSide(
-                                    color: Colors.white,
-                                    width: 1.5,
-                                  )
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      )),
-                ),
-              ]),
-            ],
-          ),
-        );
-        */
       });
 
       setState(() {
@@ -464,12 +183,6 @@ class ScrumPokerCardsState extends State<ScrumPokerCards>
       end: new RelativeRect.fromLTRB(0.0, 0.0, 0.0, 0.0),
     ).animate(new CurvedAnimation(parent: _controller, curve: Curves.linear));
   }
-
-  // void changeColor(Color color) {
-  //   setState(() {
-  //     currentColor = color;
-  //   });
-  // }
 
   @override
   void initState() {
@@ -596,11 +309,9 @@ class ScrumPokerCardsState extends State<ScrumPokerCards>
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
-          // color: selected ? Colors.white.withOpacity(0.25) : Colors.transparent,
           color: selected
               ? Colors.white.withOpacity(0.25)
               : Colors.white.withOpacity(0.1),
-          // color: fonteNecessaria(),
           child: ListTile(
             title: Text(
               category.nomeDaAba,
@@ -614,108 +325,6 @@ class ScrumPokerCardsState extends State<ScrumPokerCards>
         ),
       );
     }).toList();
-
-    /*return Scaffold(
-      body: Column(
-        children: <Widget>[
-          Container(
-              color: Colors.yellow,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Container(
-                        color: Colors.red,
-                        child: Text(
-                          'Texto: ',
-                          textAlign: TextAlign.start,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: <Widget>[
-                      Container(
-                        color: Colors.green,
-                        child: RaisedButton(
-                          child: Text('A+'),
-                          onPressed: () => {},
-                        ),
-                      )
-                    ],
-                  ),
-                ],
-              )),
-
-          Container(
-              color: Colors.blue,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Column(
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.55,
-                        color: Colors.white,
-                        child: Text('Proteção:'),
-                      )
-                    ],
-                  ),
-                  Column(
-                    // crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Row(children: <Widget>[
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.15,
-                          color: Colors.deepOrange,
-                          child: RaisedButton(
-                            child: Text('A-'),
-                            onPressed: () => {},
-                          ),
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.15,
-                          color: Colors.deepOrange,
-                          child: RaisedButton(
-                            child: Text('A+'),
-                            onPressed: () => {},
-                          ),
-                        ),
-                      ])
-                    ],
-                  )
-                ],
-              )),
-
-          //           DropdownButton<String>(
-          //   value: dropdownValue,
-          //   // icon: Icon(Icons.arrow_downward),
-          //   iconSize: 24,
-          //   elevation: 16,
-          //   style: TextStyle(color: Colors.deepPurple),
-          //   underline: Container(
-          //     height: 2,
-          //     color: Colors.deepPurpleAccent,
-          //   ),
-          //   onChanged: (String newValue) {
-          //     setState(() {
-          //       dropdownValue = newValue;
-          //     });
-          //   },
-          //   items: <String>['One', 'Two', 'Free', 'Four']
-          //       .map<DropdownMenuItem<String>>((String value) {
-          //     return DropdownMenuItem<String>(
-          //       value: value,
-          //       child: Text(value),
-          //     );
-          //   }).toList(),
-          // )
-        ],
-      ),
-    );*/
 
     return Container(
       key: _backdropKey,
@@ -736,14 +345,6 @@ class ScrumPokerCardsState extends State<ScrumPokerCards>
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: backdropItems
-
-                      // children: <Widget>[
-                      //   Row(
-                      //     children: <Widget>[
-                      //       Text('d', textAlign: TextAlign.start,),
-                      //       RaisedButton(child: Text('A+'), onPressed: () => {},),
-                      //   ],)
-                      // ],
                       ),
                 ),
               ),
@@ -798,7 +399,6 @@ Widget listaCartas(List<String> lista, int qtcolunas, double tamanhofonte,
                 carta: data,
                 corEscolhida: cor,
                 corDaFonte: fonteNecessaria(),
-                // fonteNecessaria()
                   ),
               )));
               },
@@ -843,7 +443,6 @@ class CategoryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final ThemeData theme = Theme.of(context);
     return Scrollbar(
       child: ListView(
         key: PageStorageKey<_AbaClass>(category),
@@ -864,15 +463,7 @@ class CategoryView extends StatelessWidget {
                       Image.asset(
                         asset,
                         fit: BoxFit.contain,
-                      ),
-                      // Container(
-                      //   padding: const EdgeInsets.only(bottom: 16.0),
-                      //   alignment: AlignmentDirectional.center,
-                      //   child: Text(
-                      //     asset,
-                      //     style: theme.textTheme.caption,
-                      //   ),
-                      // ),
+                      ),                      
                     ],
                   ),
                 ),
@@ -904,7 +495,6 @@ class BackdropPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final ThemeData theme = Theme.of(context);
     return Material(
       borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(16.0),
@@ -925,7 +515,6 @@ class BackdropPanel extends StatelessWidget {
               child: DefaultTextStyle(
                 style:
                     TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
-                // style: theme.textTheme.button,
                 child: Tooltip(
                   message: 'Pressione para mostrar/esconder',
                   child: title,
@@ -940,25 +529,6 @@ class BackdropPanel extends StatelessWidget {
     );
   }
 }
-
-// Color fonteNecessaria() {
-//   return useWhiteForeground(currentColor)
-//       ? Color(0xffffffff)
-//       : Color(0xff000000);
-// }
-
-// String imagemCafe() {
-// String retorno;
-
-// if (fonteNecessaria() == Colors.black)
-//   retorno = 'assets/cafep.png';
-// else
-//   if (fonteNecessaria() == Colors.white)
-// retorno = 'assets/cafew.png';
-
-// return retorno;
-//   return 'assets/cafew.png';
-// }
 
 class Teste extends StatefulWidget {
   Function fu;
@@ -1003,81 +573,22 @@ class _TesteState extends State<Teste> {
                 ),
               ),
             ),
-            /*Padding(
-                  padding:
-                      const EdgeInsets.only(bottom: 25, left: 15, right: 15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        'Tamanho da fonte:',
-                        textAlign: TextAlign.start,
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Container(
-                            height: 50,
-                            child: RaisedButton(
-                              color: Colors.grey[350],
-                              elevation: 0,
-                              child: Text(
-                                'A-',
-                                style: TextStyle(fontSize: 12),
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  if (fontSize != 14) fontSize -= 4;
-                                });
-                              },
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(3),
-                          ),
-                          Container(
-                            height: 50,
-                            child: RaisedButton(
-                              color: Colors.grey[350],
-                              elevation: 0,
-                              child: Text(
-                                'A+',
-                                style: TextStyle(fontSize: 20),
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  if (fontSize != 46) fontSize += 4;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                */
 
             Divider(),
             Padding(
               padding: const EdgeInsets.only(left: 5, right: 5, bottom: 5, top: 5),
               child: Container(
-                  // color: Colors.blue,
                   child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Column(
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
                     children: <Widget>[
                       Container(
                         width: MediaQuery.of(context).size.width * 0.5,
-                        // color: Colors.white,
                         child: Text(
                           'Tamanho da fonte:',
-                          // Colors.white.toString(),
                           style: TextStyle(
                               color: Colors.black,
-                              // color: Color(),
                               fontWeight: FontWeight.w500,
                               fontSize: 16),
                         ),
@@ -1085,13 +596,11 @@ class _TesteState extends State<Teste> {
                     ],
                   ),
                   Column(
-                    // crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Row(children: <Widget>[
                         Container(
                           height: 50,
                           width: MediaQuery.of(context).size.width * 0.2,
-                          // color: Colors.deepOrange,
                           child: RaisedButton(
                             elevation: 0,
                             highlightElevation: 1,
@@ -1112,7 +621,6 @@ class _TesteState extends State<Teste> {
                         Container(
                           height: 50,
                           width: MediaQuery.of(context).size.width * 0.2,
-                          // color: Colors.deepOrange,
                           child: RaisedButton(
                             elevation: 0,
                             highlightElevation: 1,
@@ -1134,24 +642,17 @@ class _TesteState extends State<Teste> {
               )),
             ),
             Divider(
-              // indent: 20,
-              // endIndent: 20,
             ),
-            //outrooooo
             Padding(
               padding: const EdgeInsets.all(5),
               child: Container(
-                  // color: Colors.blue,
                   child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Column(
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
                     children: <Widget>[
                       Container(
                         width: MediaQuery.of(context).size.width * 0.5,
-                        // color: Colors.white,
                         child: Text(
                           'Cor da fonte:',
                           style: TextStyle(
@@ -1163,7 +664,6 @@ class _TesteState extends State<Teste> {
                     ],
                   ),
                   Row(
-                    // crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Container(
                         height: 45,
@@ -1218,17 +718,13 @@ class _TesteState extends State<Teste> {
             Padding(
               padding: const EdgeInsets.all(5),
               child: Container(
-                  // color: Colors.blue,
                   child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Column(
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
                     children: <Widget>[
                       Container(
                         width: MediaQuery.of(context).size.width * 0.5,
-                        // color: Colors.white,
                         child: Text(
                           'Cor de tema:',
                           style: TextStyle(
@@ -1240,7 +736,6 @@ class _TesteState extends State<Teste> {
                     ],
                   ),
                   Row(
-                    // crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Container(
                         height: 45,
@@ -1255,7 +750,6 @@ class _TesteState extends State<Teste> {
                                     child: MaterialPicker(                                      
                                       pickerColor: currentColor,
                                       onColorChanged: changeColor2,
-                                      // onColorChanged: widget._fu,
                                     ),
                                   ),
                                 );
@@ -1267,7 +761,6 @@ class _TesteState extends State<Teste> {
                           fillColor: currentColor,
                           shape: CircleBorder(                          
                               side: BorderSide(                              
-                                // color: Colors.white,
                                 width: 1.5,
                             )
                           ),
@@ -1291,5 +784,3 @@ Color fonteNecessaria() {
   else
     return corFonteUsuario;
 }
-
-
