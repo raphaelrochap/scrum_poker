@@ -23,22 +23,27 @@ class _CartaEscolhidaState extends State<CartaEscolhida> {
   Widget build(BuildContext context) {
     return FlipCard(
       speed: 500,
-      direction: FlipDirection.HORIZONTAL,
+      direction: retornarDirecaoVirada(context),
       front: mostrarCarta(' ', context, widget.corEscolhida, widget.corDaFonte),
-      back: mostrarCarta(widget.carta, context, widget.corEscolhida, widget.corDaFonte),
+      back: mostrarCarta(
+          widget.carta, context, widget.corEscolhida, widget.corDaFonte),
     );
   }
 
-  Widget mostrarCarta(String carta, BuildContext context, Color cor, Color corDafonte) {
+  Widget mostrarCarta(
+      String carta, BuildContext context, Color cor, Color corDafonte) {
     return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0),),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20.0),
+      ),
       elevation: 10,
       color: cor,
       child: Center(child: textoOuIcone(carta, 200, corDafonte, context)),
     );
   }
 
-  Widget textoOuIcone(String texto, double tamanhoFonte, Color corDafonte, BuildContext context) {
+  Widget textoOuIcone(String texto, double tamanhoFonte, Color corDafonte,
+      BuildContext context) {
     if (texto == 'assets/cafe.png') {
       var imagemCafe = AssetImage(texto);
       return Image(
@@ -59,5 +64,15 @@ class _CartaEscolhidaState extends State<CartaEscolhida> {
         ),
       );
     }
+  }
+}
+
+FlipDirection retornarDirecaoVirada(BuildContext context) {
+  var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
+
+  if (isPortrait) {
+    return FlipDirection.HORIZONTAL;
+  } else {
+    return FlipDirection.VERTICAL;
   }
 }

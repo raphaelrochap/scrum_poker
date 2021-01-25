@@ -3,28 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:scrum_manager_lite/pages/CartaEscolhida.dart';
 import 'package:scrum_manager_lite/pages/PainelConfiguracao.dart';
-import 'package:scrum_manager_lite/pages/arquivo_configuracao.dart' as arquivo_configuracao;
+import 'package:scrum_manager_lite/pages/arquivo_configuracao.dart'
+    as arquivo_configuracao;
 import 'package:scrum_manager_lite/pages/AbaCarta.dart' as aba_carta;
 
 class CartasScrumPoker extends StatefulWidget {
   CartasScrumPokerState createState() => CartasScrumPokerState();
 }
 
-class CartasScrumPokerState extends State<CartasScrumPoker> with SingleTickerProviderStateMixin {
-
-  static final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  PersistentBottomSheetController<void> painelRodapeController;  
+class CartasScrumPokerState extends State<CartasScrumPoker>
+    with SingleTickerProviderStateMixin {
+  static final GlobalKey<ScaffoldState> scaffoldKey =
+      GlobalKey<ScaffoldState>();
+  PersistentBottomSheetController<void> painelRodapeController;
   bool painelAtivo = false;
 
   @override
   void initState() {
     super.initState();
-    
+
     controllerAnimacao = new AnimationController(
-      duration: const Duration(milliseconds: 100),
-      value: 100.0,
-      vsync: this
-    );
+        duration: const Duration(milliseconds: 100), value: 100.0, vsync: this);
   }
 
   void setStateClasseChamadora() {
@@ -48,7 +47,7 @@ class CartasScrumPokerState extends State<CartasScrumPoker> with SingleTickerPro
     } else {
       setState(() {
         if (painelRodapeController != null) painelRodapeController.close();
-          painelAtivo = false;
+        painelAtivo = false;
       });
     }
 
@@ -68,11 +67,12 @@ class CartasScrumPokerState extends State<CartasScrumPoker> with SingleTickerPro
   Animation<RelativeRect> _getPanelAnimation(BoxConstraints constraints) {
     final double height = constraints.biggest.height;
     final double top = height - 32.0;
-    final double bottom = - 32.0;
+    final double bottom = -32.0;
     return new RelativeRectTween(
       begin: new RelativeRect.fromLTRB(0.0, top, 0.0, bottom),
       end: new RelativeRect.fromLTRB(0.0, 0.0, 0.0, 0.0),
-    ).animate(new CurvedAnimation(parent: controllerAnimacao, curve: Curves.linear));
+    ).animate(
+        new CurvedAnimation(parent: controllerAnimacao, curve: Curves.linear));
   }
 
   @override
@@ -83,12 +83,14 @@ class CartasScrumPokerState extends State<CartasScrumPoker> with SingleTickerPro
 
   bool get painelVisivel {
     final AnimationStatus status = controllerAnimacao.status;
-    return status == AnimationStatus.completed || status == AnimationStatus.forward;
+    return status == AnimationStatus.completed ||
+        status == AnimationStatus.forward;
   }
 
   bool get backdropPanelVisible {
     final AnimationStatus status = controllerAnimacao.status;
-    return status == AnimationStatus.completed || status == AnimationStatus.forward;
+    return status == AnimationStatus.completed ||
+        status == AnimationStatus.forward;
   }
 
   final GlobalKey backdropKey = GlobalKey(debugLabel: 'Backdrop');
@@ -98,24 +100,27 @@ class CartasScrumPokerState extends State<CartasScrumPoker> with SingleTickerPro
   }
 
   double get backdropHeight {
-    final RenderBox renderBox = backdropKey.currentContext.findRenderObject() as RenderBox;
+    final RenderBox renderBox =
+        backdropKey.currentContext.findRenderObject() as RenderBox;
     return renderBox.size.height;
   }
 
   void controlaAtualizacaoDeslizePainel(DragUpdateDetails details) {
-    controllerAnimacao.value -= details.primaryDelta / (backdropHeight ?? details.primaryDelta);
+    controllerAnimacao.value -=
+        details.primaryDelta / (backdropHeight ?? details.primaryDelta);
   }
 
   void controlaDeslizeParaIrInicioOuFim(DragEndDetails details) {
-    final double flingVelocity = details.velocity.pixelsPerSecond.dy / backdropHeight;
+    final double flingVelocity =
+        details.velocity.pixelsPerSecond.dy / backdropHeight;
 
     if (flingVelocity < 0.0)
       controllerAnimacao.fling(velocity: math.max(0.1, flingVelocity));
+    else if (flingVelocity > 0.0)
+      controllerAnimacao.fling(velocity: math.min(-0.1, -flingVelocity));
     else
-      if (flingVelocity > 0.0)
-        controllerAnimacao.fling(velocity: math.min(-0.1, -flingVelocity));
-      else
-        controllerAnimacao.fling(velocity: controllerAnimacao.value < 1.5 ? -0.1 : 0.1);
+      controllerAnimacao.fling(
+          velocity: controllerAnimacao.value < 1.5 ? -0.1 : 0.1);
   }
 
   void changeColor(Color cor) {
@@ -142,28 +147,20 @@ class CartasScrumPokerState extends State<CartasScrumPoker> with SingleTickerPro
             color: arquivo_configuracao.fonteNecessaria(),
           ),
         ),
-        title: Text('Planning Cards',
+        title: Text(
+          'Scrum Manager',
           style: TextStyle(
             color: arquivo_configuracao.fonteNecessaria(),
           ),
         ),
-        backgroundColor: Color(arquivo_configuracao.listaConfiguracoes['corTema']),
+        backgroundColor:
+            Color(arquivo_configuracao.listaConfiguracoes['corTema']),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.settings),
             color: arquivo_configuracao.fonteNecessaria(),
             onPressed: _mostrarPainelConfiguracao,
           ),
-
-          IconButton(
-            icon: Icon(Icons.delete),
-            color: arquivo_configuracao.fonteNecessaria(),
-            onPressed: (){
-              arquivo_configuracao.excluirArquivo();
-            },
-          ),
-
-
         ],
       ),
       body: LayoutBuilder(
@@ -183,8 +180,9 @@ class CartasScrumPokerState extends State<CartasScrumPoker> with SingleTickerPro
       });
     }
 
-  final List<Widget> backdropItems = aba_carta.listaTipoCarta.map<Widget>((aba_carta.AbaCarta category) {
-    final bool selected = category == abaVisivel;
+    final List<Widget> backdropItems =
+        aba_carta.listaTipoCarta.map<Widget>((aba_carta.AbaCarta category) {
+      final bool selected = category == abaVisivel;
       return Padding(
         padding: const EdgeInsets.all(3),
         child: Material(
@@ -256,7 +254,8 @@ class CartasScrumPokerState extends State<CartasScrumPoker> with SingleTickerPro
   }
 }
 
-Widget listaCartas(List<String> lista, int qtcolunas, Color cor, BuildContext context) {
+Widget listaCartas(
+    List<String> lista, int qtcolunas, Color cor, BuildContext context) {
   return GridView.count(
     crossAxisCount: qtcolunas,
     padding: EdgeInsets.all(5.0),
@@ -272,8 +271,8 @@ Widget listaCartas(List<String> lista, int qtcolunas, Color cor, BuildContext co
                     context: context,
                     builder: (_) => Center(
                             child: Container(
-                          width: (MediaQuery.of(context).size.width * 0.85),
-                          height: (MediaQuery.of(context).size.height * 0.75),
+                          width: (MediaQuery.of(context).size.width * 0.80),
+                          height: (MediaQuery.of(context).size.height * 0.7),
                           child: CartaEscolhida(
                             carta: data,
                             corEscolhida: cor,
