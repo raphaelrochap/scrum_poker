@@ -1,11 +1,11 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:scrum_manager_lite/pages/CartaEscolhida.dart';
-import 'package:scrum_manager_lite/pages/PainelConfiguracao.dart';
-import 'package:scrum_manager_lite/pages/arquivo_configuracao.dart'
+import 'package:scrum_poker/pages/CartaEscolhida.dart';
+import 'package:scrum_poker/pages/PainelConfiguracao.dart';
+import 'package:scrum_poker/pages/arquivo_configuracao.dart'
     as arquivo_configuracao;
-import 'package:scrum_manager_lite/pages/AbaCarta.dart' as aba_carta;
+import 'package:scrum_poker/pages/AbaCarta.dart' as aba_carta;
 
 class CartasScrumPoker extends StatefulWidget {
   CartasScrumPokerState createState() => CartasScrumPokerState();
@@ -148,7 +148,7 @@ class CartasScrumPokerState extends State<CartasScrumPoker>
           ),
         ),
         title: Text(
-          'Scrum Manager',
+          'Scrum Poker',
           style: TextStyle(
             color: arquivo_configuracao.fonteNecessaria(),
           ),
@@ -161,6 +161,13 @@ class CartasScrumPokerState extends State<CartasScrumPoker>
             color: arquivo_configuracao.fonteNecessaria(),
             onPressed: _mostrarPainelConfiguracao,
           ),
+          // IconButton(
+          //   icon: Icon(Icons.delete),
+          //   color: arquivo_configuracao.fonteNecessaria(),
+          //   onPressed: () {
+          //     arquivo_configuracao.excluirArquivo();
+          //   },
+          // ),
         ],
       ),
       body: LayoutBuilder(

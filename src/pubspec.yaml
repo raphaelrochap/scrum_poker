@@ -1,5 +1,5 @@
-name: scrum_manager_lite
-description: A new Flutter project.
+name: scrum_poker
+description: Ferramenta Open Source para reuniões de planning do Scrum.
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -83,4 +83,4 @@ flutter:
 flutter_icons:
   android: "launcher_icon" 
   ios: true
-  image_path: "assets/icone4.png"
+  image_path: "assets/icone.png"
