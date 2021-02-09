@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:scrum_manager_lite/pages/arquivo_configuracao.dart' as arquivo_configuracao;
+import 'package:scrum_poker/pages/arquivo_configuracao.dart'
+    as arquivo_configuracao;
 
 class PainelConfiguracao extends StatefulWidget {
   final Function setStateClasseChamadora;
 
-  PainelConfiguracao(
-    {Key key,
-    @required this.setStateClasseChamadora})
-    : super(key: key);
+  PainelConfiguracao({Key key, @required this.setStateClasseChamadora})
+      : super(key: key);
 
   @override
   _PainelConfiguracaoState createState() => _PainelConfiguracaoState();
@@ -83,11 +82,15 @@ class _PainelConfiguracaoState extends State<PainelConfiguracao> {
                             child: Text('A-', style: TextStyle(fontSize: 14)),
                             onPressed: () {
                               setState(() {
-                                if (arquivo_configuracao.listaConfiguracoes['tamanhoFonte'] != 14)
-                                  arquivo_configuracao.listaConfiguracoes['tamanhoFonte'] -= 4;
+                                if (arquivo_configuracao
+                                        .listaConfiguracoes['tamanhoFonte'] !=
+                                    14)
+                                  arquivo_configuracao
+                                      .listaConfiguracoes['tamanhoFonte'] -= 4;
 
-                                  arquivo_configuracao.saveData(arquivo_configuracao.listaConfiguracoes);
-                                  widget.setStateClasseChamadora();
+                                arquivo_configuracao.saveData(
+                                    arquivo_configuracao.listaConfiguracoes);
+                                widget.setStateClasseChamadora();
                               });
                             },
                           ),
@@ -105,11 +108,15 @@ class _PainelConfiguracaoState extends State<PainelConfiguracao> {
                             child: Text('A+', style: TextStyle(fontSize: 20)),
                             onPressed: () {
                               setState(() {
-                                if (arquivo_configuracao.listaConfiguracoes['tamanhoFonte'] != 46)
-                                  arquivo_configuracao.listaConfiguracoes['tamanhoFonte'] += 4;
+                                if (arquivo_configuracao
+                                        .listaConfiguracoes['tamanhoFonte'] !=
+                                    46)
+                                  arquivo_configuracao
+                                      .listaConfiguracoes['tamanhoFonte'] += 4;
 
-                                  arquivo_configuracao.saveData(arquivo_configuracao.listaConfiguracoes);
-                                  widget.setStateClasseChamadora();
+                                arquivo_configuracao.saveData(
+                                    arquivo_configuracao.listaConfiguracoes);
+                                widget.setStateClasseChamadora();
                               });
                             },
                           ),
@@ -150,14 +157,15 @@ class _PainelConfiguracaoState extends State<PainelConfiguracao> {
                             setState(() {
                               if (!(arquivo_configuracao.fonteNecessaria() ==
                                   Colors.black)) {
-                                arquivo_configuracao.listaConfiguracoes['corFonte'] =
+                                arquivo_configuracao
+                                        .listaConfiguracoes['corFonte'] =
                                     Colors.black.value;
                                 arquivo_configuracao
                                         .listaConfiguracoes['usuarioEscolheu'] =
                                     !arquivo_configuracao
                                         .listaConfiguracoes['usuarioEscolheu'];
-                                arquivo_configuracao
-                                    .saveData(arquivo_configuracao.listaConfiguracoes);
+                                arquivo_configuracao.saveData(
+                                    arquivo_configuracao.listaConfiguracoes);
                                 widget.setStateClasseChamadora();
                               }
                             });
@@ -176,10 +184,17 @@ class _PainelConfiguracaoState extends State<PainelConfiguracao> {
                         child: RawMaterialButton(
                           onPressed: () {
                             setState(() {
-                              if (!(arquivo_configuracao.fonteNecessaria() == Colors.white)) {
-                                arquivo_configuracao.listaConfiguracoes['corFonte'] = Colors.white.value;
-                                arquivo_configuracao.listaConfiguracoes['usuarioEscolheu'] = !arquivo_configuracao.listaConfiguracoes['usuarioEscolheu'];
-                                arquivo_configuracao.saveData(arquivo_configuracao.listaConfiguracoes);
+                              if (!(arquivo_configuracao.fonteNecessaria() ==
+                                  Colors.white)) {
+                                arquivo_configuracao
+                                        .listaConfiguracoes['corFonte'] =
+                                    Colors.white.value;
+                                arquivo_configuracao
+                                        .listaConfiguracoes['usuarioEscolheu'] =
+                                    !arquivo_configuracao
+                                        .listaConfiguracoes['usuarioEscolheu'];
+                                arquivo_configuracao.saveData(
+                                    arquivo_configuracao.listaConfiguracoes);
                                 widget.setStateClasseChamadora();
                               }
                             });
@@ -232,17 +247,20 @@ class _PainelConfiguracaoState extends State<PainelConfiguracao> {
                                   title: Text('Selecione uma cor'),
                                   content: SingleChildScrollView(
                                     child: MaterialPicker(
-                                      pickerColor: Color(arquivo_configuracao.listaConfiguracoes['corTema']),
+                                      pickerColor: Color(arquivo_configuracao
+                                          .listaConfiguracoes['corTema']),
                                       onColorChanged: corAlterada,
                                     ),
                                   ),
                                 );
                               },
                             );
-                            arquivo_configuracao.listaConfiguracoes['usuarioEscolheu'] = false;
+                            arquivo_configuracao
+                                .listaConfiguracoes['usuarioEscolheu'] = false;
                           },
                           elevation: 0,
-                          fillColor: Color(arquivo_configuracao.listaConfiguracoes['corTema']),
+                          fillColor: Color(arquivo_configuracao
+                              .listaConfiguracoes['corTema']),
                           shape: CircleBorder(
                               side: BorderSide(
                             width: 1.5,
@@ -259,7 +277,8 @@ class _PainelConfiguracaoState extends State<PainelConfiguracao> {
               margin: EdgeInsets.only(top: 5, bottom: 15),
               height: 35,
               child: RaisedButton(
-                color: Color(arquivo_configuracao.listaConfiguracoes['corTema']),
+                color:
+                    Color(arquivo_configuracao.listaConfiguracoes['corTema']),
                 elevation: 0,
                 disabledElevation: 0,
                 focusElevation: 0,
@@ -270,7 +289,8 @@ class _PainelConfiguracaoState extends State<PainelConfiguracao> {
                 ),
                 child: Text(
                   'Restaurar padrão',
-                  style: TextStyle(color: arquivo_configuracao.fonteNecessaria()),
+                  style:
+                      TextStyle(color: arquivo_configuracao.fonteNecessaria()),
                 ),
                 onPressed: () {
                   setState(() {
