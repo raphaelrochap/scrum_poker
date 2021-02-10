@@ -10,6 +10,13 @@ O aplicativo já está publicado na Play Store.<br/>
 Gostou? Avalie o App na loja! :D<br/>
 [Acesse o Aplicativo na Play Store](https://play.google.com/store/apps/details?id=com.raphael.rocha.scrum_poker)
 
+## Imagens
+
+![](https://play-lh.googleusercontent.com/KHpyKzoQ0oKeqD5I0KjDzyX78WFN0eWVk6k7aZc1SASuXKKHMdyQk3oTgQ3ZsKtGIA=w720-h310-rw)
+![](https://play-lh.googleusercontent.com/OL63xir_oGl1IiR3lxAycMfDJmS9r6pl4SWsBVW3Qn4g0Kll6QKZ66vlRYWYAb9UKg_j=w720-h310-rw)
+![](https://play-lh.googleusercontent.com/Wda-WvhbLjwKM4AbGvrGovD-vPQ-w9pfimjt7Ditx0fRTQXZa4zV6SgNTkdy9q38KR4=w720-h310-rw)
+![](https://play-lh.googleusercontent.com/Nw3i27Syri9PwfUgmmLck4g6I8atoZ_Cd4JiBS7JV8LXutYR8-MiZ_k3AL26AEb_B2U=w720-h310-rw)
+
 ## Como Utilizar
 
 Para baixar os fontes através do Git, utilize na pasta onde deseja baixar os fontes:
